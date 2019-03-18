@@ -161,6 +161,7 @@ static NSString *const CCNStatusItemWindowConfigurationPinnedPath = @"windowConf
 
         self.dropTypes = @[NSFilenamesPboardType];
         self.dropHandler = nil;
+        self.destinationHandler = nil;
         self.proximityDragDetectionEnabled = NO;
         self.proximityDragZoneDistance = 23.0;
         self.proximityDragDetectionHandler = nil;
@@ -188,6 +189,7 @@ static NSString *const CCNStatusItemWindowConfigurationPinnedPath = @"windowConf
     _statusItemWindowController = nil;
     _windowConfiguration = nil;
     _dropHandler = nil;
+    _destinationHandler = nil;
     _proximityDragDetectionHandler = nil;
     _proximityDragCollisionArea = nil;
     _customViewContainer = nil;
@@ -243,6 +245,7 @@ static NSString *const CCNStatusItemWindowConfigurationPinnedPath = @"windowConf
     self.dropView.statusItem = self;
     self.dropView.dropTypes = self.dropTypes;
     self.dropView.dropHandler = self.dropHandler;
+    self.dropView.destinationHandler = self.destinationHandler;
     [button addSubview:self.dropView];
     self.dropView.autoresizingMask = (NSViewWidthSizable | NSViewHeightSizable);
 }

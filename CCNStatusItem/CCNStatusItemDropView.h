@@ -36,5 +36,7 @@
 @property (nonatomic, copy) CCNStatusItemDropHandler dropHandler;
 @property (nonatomic, copy) NSArray *dropTypes;
 
+@property (nonatomic, copy) CCNStatusItemDestinationHandler destinationHandler;
+
 @end
 
