@@ -29,7 +29,6 @@
 
 #import "CCNStatusItemDropView.h"
 
-
 @interface CCNStatusItemDropView ()
 
 @property (nonatomic, copy) NSArray *privateDropTypes;
@@ -60,11 +59,44 @@
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
     
+    if (self.destinationHandler) {
+        self.destinationHandler(self.statusItem, CCNStatusItemDragDropPhaseEnter);
+    }
+
     if ([self dropTypeInPasteboardTypes:pboard.types]) {
         return NSDragOperationCopy;
     }
     else {
         return NSDragOperationNone;
+    }
+}
+
+/*
+ if the destination responded to draggingEntered:
+ but not to draggingUpdated:
+ the return value from draggingEntered: is used
+ 
+ Now, codes are the same as enterred.
+ 
+ */
+- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender {
+    NSPasteboard *pboard = [sender draggingPasteboard];
+    
+    if (self.destinationHandler) {
+        self.destinationHandler(self.statusItem, CCNStatusItemDragDropPhaseUpdate);
+    }
+    
+    if ([self dropTypeInPasteboardTypes:pboard.types]) {
+        return NSDragOperationCopy;
+    }
+    else {
+        return NSDragOperationNone;
+    }
+}
+
+- (void)draggingExited:(nullable id <NSDraggingInfo>)sender {
+    if (self.destinationHandler) {
+        self.destinationHandler(self.statusItem, CCNStatusItemDragDropPhaseExit);
     }
 }
 

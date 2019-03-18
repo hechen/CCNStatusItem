@@ -48,6 +48,14 @@ typedef void (^CCNStatusItemProximityDragDetectionHandler)(CCNStatusItem *shared
 typedef BOOL (^CCNStatusItemShouldShowHandler)(CCNStatusItem *sharedItem);
 
 
+
+typedef NS_ENUM(NSUInteger, CCNStatusItemDragDropPhase) {
+    CCNStatusItemDragDropPhaseEnter,
+    CCNStatusItemDragDropPhaseUpdate,
+    CCNStatusItemDragDropPhaseExit
+};
+typedef void (^CCNStatusItemDestinationHandler)(CCNStatusItem *sharedItem, CCNStatusItemDragDropPhase phase);
+
 #pragma mark - CCNStatusItem
 
 @interface CCNStatusItem : NSObject
@@ -122,6 +130,13 @@ typedef BOOL (^CCNStatusItemShouldShowHandler)(CCNStatusItem *sharedItem);
  Property that represents the dropHandler to be executed if not nil.
  */
 @property (copy, nonatomic) CCNStatusItemDropHandler dropHandler;
+
+
+/**
+ Property represents NSDraggingDestination Phases.
+ */
+@property (copy, nonatomic) CCNStatusItemDestinationHandler destinationHandler;
+
 
 /**
  Property that represents the shouldShowHandler to be executed when the status item is clicked, if not nil.
