@@ -2,7 +2,6 @@
 ![Travis Status](https://travis-ci.org/phranck/CCNStatusItem.png?branch=master)
 
 
-
 ## Overview
 
 `CCNStatusItem` is a subclass of `NSObject` to act as a custom `NSStatusItem`. Running on Yosemite it has full support for the class `NSStatusBarButton` which is provided by `NSStatusItem` via the `button` property.
